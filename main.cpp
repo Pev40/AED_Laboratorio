@@ -12,6 +12,7 @@ int main(){
             polinomios.add(1,1);
             polinomios.add(5,0);
             polinomios.add(3,6);
+            polinomios.add(-4,5);
             
                 polinomios.print();
     return 0;

@@ -10,7 +10,7 @@ public:
     void add(int Coef,int Grado);
     void print();
     void insert(int,int);
-    void deleteIn(int);
+    void deleteCoe(int);
     ~LinkedList();
 };
 
@@ -25,8 +25,20 @@ void LinkedList::insert(int Coef,int Grado){
     return;
 }
 
-void LinkedList::deleteIn(int pos){
-    Par* nodoAux=head;
+void LinkedList::deleteCoe(int Grado){
+    Par* nodoAux=this->head;
+    while (nodoAux->getNext()!=nullptr)
+    {
+        if(nodoAux->getNext()->getGrado()==Grado){
+            break;
+        }
+        nodoAux = nodoAux->getNext();
+    }
+    Par* nodoSalida = nodoAux;
+    nodoSalida=nodoSalida->getNext();
+    nodoAux->setNext(nodoAux->getNext()->getNext());
+    nodoSalida->setEliminar();
+    
  return;
     
 }
@@ -38,7 +50,11 @@ void LinkedList::add(int Coef,int Grado){
     {
         if(nodoAux->getGrado()==Grado){
             Coef = Coef+nodoAux->getCoeficiente();
+            if(Coef ==0){
+                deleteCoe(Grado);
+            }
             nodoAux->setCoeficiente(Coef);
+        
         //    std::cout<<"Aqui1";
             break;
         }
@@ -75,7 +91,12 @@ void LinkedList::print(){
 //    std::cout<<"Aqui";
     while (nodoAux->getCoeficiente()>=0){
         nodoAux->print();
-        nodoAux = nodoAux->getNext();
+        if(nodoAux->getNext()==nullptr){
+            return;
+        }else{
+            nodoAux = nodoAux->getNext();
+        }
+        
     }
     return;
 }

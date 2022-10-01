@@ -16,8 +16,11 @@ public:
     int getCoeficiente();
     int getGrado();
     Par* getNext();
+    void setEliminar();
     void print();
 };
+
+
 
 Par::Par(){
     this->Coeficiente=0;
@@ -45,6 +48,11 @@ Par* Par::getNext(){
 
 void Par::print(){
     std::cout<<"("<<this->Coeficiente<<","<<this->Grado<<")"; return;
+}
+
+void Par::setEliminar(){
+    this->next=nullptr;
+    return;
 }
 Par::~Par(){}
 
